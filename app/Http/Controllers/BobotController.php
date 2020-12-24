@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Alternatif;
+use App\Bobot;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class AlternatifController extends Controller
+class BobotController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +15,8 @@ class AlternatifController extends Controller
      */
     public function index()
     {
-        $data = Alternatif::all();
-
-        return view('alternatif.index', compact('data'));
+        $data = \DB::table('bobot')->select('*')->get();
+        return view('bobot.index', compact('data'));
     }
 
     /**
@@ -33,7 +26,7 @@ class AlternatifController extends Controller
      */
     public function create()
     {
-        // return view('kriteria.add');
+        //
     }
 
     /**
@@ -44,28 +37,27 @@ class AlternatifController extends Controller
      */
     public function store(Request $request)
     {
-        $model = new Alternatif();
+        $model = new Bobot();
 
-        $model->nama = $request->nama;
+        $model->bobot = $request->bobot;
+        $model->deskripsi = $request->deskripsi;
 
-        // if ($model::where('user_id', '=', Auth::user()->id)->count() < 3) {
         try {
             $model->save();
-        // } else {
         } catch (Exception $e) {
             return back()->withError($e)->withInput();
         }
 
-        return redirect()->route('alternatif.index');
+        return redirect()->route('bobot.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Kriteria  $kriteria
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Alternatif $alternatif)
+    public function show($id)
     {
         //
     }
@@ -73,22 +65,22 @@ class AlternatifController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Kriteria  $kriteria
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Alternatif $alternatif)
+    public function edit($id)
     {
-        return view('alternatif.add', compact('alternatif'));
+        // todo
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Kriteria  $kriteria
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Alternatif $alternatif)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -96,14 +88,18 @@ class AlternatifController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Kriteria  $kriteria
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Alternatif $alternatif)
+    public function destroy(Bobot $bobot)
     {
-        $rk = Alternatif::findOrFail($alternatif->id);
-        $rk->delete();
+        $rk = Bobot::findOrFail($bobot->id);
+        try {
+            $rk->delete();
+        } catch (Exception $e){
+            return back()->withError($e)->withInput();
+        }
 
-        return redirect()->route('alternatif.index');
+        return redirect()->route('bobot.index');
     }
 }

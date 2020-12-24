@@ -33,8 +33,20 @@ Route::get('/alternatif/{alternatif}/edit', 'AlternatifController@edit')->name('
 Route::delete('/alternatif/{alternatif}', 'AlternatifController@destroy')->name('alternatif.delete');
 Route::patch('/alternatif/{alternatif}', 'AlternatifController@update')->name('alternatif.update');
 
-Route::get('/penilaian-kriteria/add', 'PKriteriaController@create')->name('pkriteria.add');
+Route::get('/penilaian-kriteria/detail', 'PKriteriaController@detail')->name('pkriteria.detail');
 Route::get('/penilaian-kriteria', 'PKriteriaController@index')->name('pkriteria.index');
 Route::post('/penilaian-kriteria', 'PKriteriaController@store')->name('pkriteria.store');
+Route::delete('/penilaian-kriteria/{pkriteria}', 'PKriteriaController@destroy')->name('pkriteria.delete');
+
+Route::get('/penilaian-alternatif/detail', 'PAlternatifController@detail')->name('palternatif.detail');
+Route::get('/penilaian-alternatif', 'PAlternatifController@index')->name('palternatif.index');
+Route::post('/penilaian-alternatif', 'PAlternatifController@store')->name('palternatif.store');
+Route::delete('/penilaian-alternatif/{palternatif}', 'PAlternatifController@destroy')->name('palternatif.delete');
+
+Route::get('/bobot', 'BobotController@index')->name('bobot.index');
+Route::post('/bobot', 'BobotController@store')->name('bobot.store');
+Route::get('/bobot/{bobot}/edit', 'BobotController@edit')->name('bobot.edit');
+Route::delete('/bobot/{bobot}', 'BobotController@destroy')->name('bobot.delete');
+Route::patch('/bobot/{bobot}', 'BobotController@update')->name('bobot.update');
 
 // Route::get('/alternatif', 'HomeController@alternatif')->name('alternatif');

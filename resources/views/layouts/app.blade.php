@@ -14,8 +14,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    {{-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
+    {{-- <link rel="dns-prefetch" href="//fonts.gstatic.com"> --}}
     <link href="{{ asset('css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -24,7 +23,11 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
-
+    
+    <link href="datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.2/css/fixedHeader.dataTables.min.css"> --}}
 </head>
 
 <body id="page-top">
@@ -65,13 +68,15 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link pb-0" href="{{ Route('kriteria.index') }}">
+                <a class="nav-link" href="{{ Route('bobot.index') }}"><span>Bobot</span></a>
+                <a class="nav-link py-0" href="{{ Route('kriteria.index') }}">
                     <span>Kriteria</span></a>
                 <a class="nav-link ml-3" href="{{ Route('pkriteria.index') }}">
                     <span>- Penilaian Kriteria</span></a>
                 <a class="nav-link py-0" href="{{ Route('alternatif.index') }}">
                     <span>Alternatif</span></a>
-                    <a href="" class="nav-link ml-3"><span>- Penilaian Alternatif</span></a>
+                    <a href="{{ Route('palternatif.index') }}" class="nav-link ml-3"><span>- Penilaian Alternatif</span></a>
+                    
             </li>
 
             <!-- Divider -->
@@ -205,10 +210,20 @@
 
     <!-- Core plugin JavaScript-->
     <script src="{{asset('js/jquery.easing.min.js')}}"></script>
-
+    
     <!-- Custom scripts for all pages-->
     <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
+
+    <script src="{{asset('datatables/jquery.dataTables.min.js')}}" defer ></script>
+    <script src="{{asset('datatables/dataTables.bootstrap4.min.js')}}" defer></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+
+    <script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    });
+    </script> 
 </body>
 
 </html>

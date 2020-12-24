@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Kriteria;
 use App\PKriteria;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +23,7 @@ class KriteriaController extends Controller
      */
     public function index()
     {
-        $data = Kriteria::all()->where('user_id', '=', Auth::user()->id);
+        $data = Kriteria::all();
         $nilai = PKriteria::all();
         return view('kriteria.index', compact(['data', 'nilai']));
     }
@@ -38,11 +39,12 @@ class KriteriaController extends Controller
         $model = new Kriteria();
 
         $model->nama = $request->nama;
-        $model->user_id = $request->user_id;
 
-        if ($model::where('user_id', '=', Auth::user()->id)->count() < 3) {
+        if ($model::count() < 3) {
+        // try {
             $model->save();
         } else {
+        // } catch (Exception $e){
             return back()->withError('Kriteria Maksimal 3')->withInput();
         }
 

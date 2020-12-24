@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Alternatif;
 use App\Kriteria;
+use App\PAlternatif;
 use App\PKriteria;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
-class PKriteriaController extends Controller
+class PAlternatifController extends Controller
 {
     public function __construct()
     {
@@ -97,118 +100,86 @@ class PKriteriaController extends Controller
     public function index()
     {
         $matriks = [];
-        $nilai = PKriteria::all();
-        return view('pkriteria.index', compact('nilai'));
+        $nilai = PAlternatif::all();
+        return view('palternatif.index', compact('nilai'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function detail()
     {
         $this->eigenVector();
-        $data = Kriteria::all();
-        $nilai = PKriteria::all();
-        return view('pkriteria.detail', compact(['data', 'nilai']));
+        $data = Alternatif::all();
+        $nilai = PAlternatif::all();
+        return view('palternatif.detail', compact(['data', 'nilai']));
     }
 
     public function store(Request $request)
     {
-        $model = new PKriteria();
-
-        // $model->id_kriteria_1 = $request->id_kriteria_1;
-        // $model->id_kriteria_2 = $request->id_kriteria_2;
-        // $model->nilai = $request->nilai;
-
-        // try {
-        //     $model->save();
-        // } catch (\Exception $e) {
-        //     return $e->getMessage();
-        // }
+        $model = new PAlternatif();
 
         $nilai = $request->nilai;
         if ($nilai[0] != $nilai[2]) {
-            //     $model->id_kriteria_1 = $request->id_kriteria_2;
-            //     $model->id_kriteria_2 = $request->id_kriteria_1;
-            //     $model->nilai = $nilai[2].'/'.$nilai[0];
-            //     $model->save();
-            \DB::table('nilai_kriteria')->insert([
+            try {
+            \DB::table('nilai_alternatif')->insert([
                 [
-                    'id_kriteria_1' => $request->id_kriteria_1,
-                    'id_kriteria_2' => $request->id_kriteria_2,
+                    'id_kriteria' => $request->id_kriteria,
+                    'id_alternatif_1' => $request->id_alternatif_1,
+                    'id_alternatif_2' => $request->id_alternatif_2,
                     'nilai' => $nilai
                 ],
                 [
-                    'id_kriteria_1' => $request->id_kriteria_2,
-                    'id_kriteria_2' => $request->id_kriteria_1,
+                    'id_kriteria' => $request->id_kriteria,
+                    'id_alternatif_1' => $request->id_alternatif_2,
+                    'id_alternatif_2' => $request->id_alternatif_1,
                     'nilai' => $nilai[2] . '/' . $nilai[0]
                 ],
             ]);
+            } catch (Exception $e){
+                return Redirect::back()->withErrors($e);
+            }
         } else {
-            $model->id_kriteria_1 = $request->id_kriteria_1;
-            $model->id_kriteria_2 = $request->id_kriteria_2;
+            $model->id_kriteria = $request->id_kriteria;
+            $model->id_alternatif_1 = $request->id_alternatif_1;
+            $model->id_alternatif_2 = $request->id_alternatif_2;
             $model->nilai = $request->nilai;
 
+            try {
             $model->save();
+            } catch (Exception $e){
+                return Redirect::back()->withErrors($e);
+            }
         }
 
+        // todo
 
         return redirect()
             ->back()
-            ->with('sukses', 'Penilaiaan Kriteria Berhasil ditambahkan!');
+            ->with('sukses', 'Penilaiaan Alternatif Berhasil ditambahkan!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Kriteria  $kriteria
-     * @return \Illuminate\Http\Response
-     */
-    public function show(PKriteria $pkriteria)
+    public function show(PAlternatif $palternatif)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Kriteria  $pkriteria
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(PKriteria $pkriteria)
+    public function edit(PAlternatif $palternatif)
     {
-        return view('kriteria.add', compact('kriteria'));
+        return view('palternatif.add', compact('palternatif'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Kriteria  $pkriteria
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, PKriteria $pkriteria)
+    public function update(Request $request, PAlternatif $palternatif)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Kriteria  $pkriteria
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(PKriteria $pkriteria)
+    public function destroy(PAlternatif $palternatif)
     {
-        $rk = PKriteria::findOrFail($pkriteria->id);
+        $rk = PAlternatif::findOrFail($palternatif->id);
         try {
             $rk->delete();
         } catch (Exception $e) {
             return back()->withError($e)->withInput();
         }
 
-        return redirect()->route('pkriteria.index');
+        return redirect()->route('palternatif.index');
     }
 }

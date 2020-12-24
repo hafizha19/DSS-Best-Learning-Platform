@@ -126,11 +126,10 @@ class AppForm{
             $opts.="<option $select value=\"".$d->$col1."\">".ucwords($d->$col2)."</option>";
         }
 
-        return "<div class=\"form-group row\">
-            <label for=\"$name\" class=\"col-sm-3 col-form-label\">$label</label>
-            <div class=\"col-sm-9\">
+        return "<div class=\"form-group row mx-0 px-0\">
+            <div class=\"col-sm-9 mx-0 px-0\">
                 <select class=\"form-control\" name=\"$name\" id=\"$name\" $required>
-                <option value=\"\">Pilih Salah Satu</option> 
+                <option value=\"\">Pilih $label</option> 
                     $opts
                 </select>
             </div>

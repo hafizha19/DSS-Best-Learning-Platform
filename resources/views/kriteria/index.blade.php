@@ -20,9 +20,6 @@ Kriteria
         <div class="col-lg-12">
             <form method="POST" action="{{route('kriteria.store')}}">
                 @csrf
-                {{-- <div class="form-group mb-2"> --}}
-                <input type="text" name="user_id" value="{{ Auth::user()->id }}" hidden>
-                {{-- </div> --}}
                 <div class="form-group mx-sm-3 mb-2">
                     <label for="nama" class="sr-only">Nama Kriteria</label>
                     <input class="form-control" id="nama" placeholder="Masukkan nama kriteria" name="nama" required>
