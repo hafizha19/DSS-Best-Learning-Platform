@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('title')
-Kriteria
+Bobot
 @endsection
 
-@section('title')
+@section('header')
 Bobot
 @endsection
 

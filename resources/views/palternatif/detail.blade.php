@@ -3,7 +3,9 @@
 @section('title')
 Tambah Kriteria
 @endsection
-
+@section('header')
+Detail Penilaian Alternatif
+@endsection
 @section('content')
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -51,7 +53,7 @@ Tambah Kriteria
                                             
                                         <tr>
                                             <td>
-                                                <p>{{\DB::table('kriteria')->select('nama')->where('id','=',$d->id)->first()->nama}}</p>
+                                                <p>{{\DB::table('alternatif')->select('nama')->where('id','=',$d->id)->first()->nama}}</p>
                                             </td>
                                             <td>
                                                 <p>

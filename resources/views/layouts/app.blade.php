@@ -10,6 +10,8 @@
 
     <title><?php  echo env('APP_NAME'); ?> @yield('title')</title>
 
+    <link href="fontawesome-free/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -23,11 +25,10 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+    
     
     <link href="datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.2/css/fixedHeader.dataTables.min.css"> --}}
 </head>
 
 <body id="page-top">
@@ -42,9 +43,9 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
+                {{-- <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
-                </div>
+                </div> --}}
                 <div class="sidebar-brand-text mx-3">DSS</div>
             </a>
 
@@ -53,8 +54,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                <a class="nav-link" href="{{route('dashboard')}}">
                     <span>Dashboard</span></a>
             </li>
 
@@ -90,11 +90,11 @@
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link" href="">
-                    <span>Hafizhatul Kiromi MZ</span></a>
+                    <span>18650084 - Hafizhatul Kiromi MZ</span></a>
                 <a class="nav-link pt-0" href="">
-                    <span>Shafa</span></a>
+                    <span>18650008 - Shafa Risqi Octaviary</span></a>
                 <a class="nav-link pt-0" href="">
-                    <span>Virgi</span></a>
+                    <span>18650101 - Firgy Aulia Artimordika</span></a>
             </li>
 
 
@@ -108,8 +108,13 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow pl-5">
 
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <h5 class="text-primary">@yield('header')</h5>
+                        </li>
+                    </ul>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto" >
 
@@ -126,12 +131,14 @@
                         @endif
                         @else
                         <li class="nav-item dropdown">
+
                             <a id="navbarDropdown" class="nav-link text-dark dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                               
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
@@ -217,13 +224,15 @@
 
     <script src="{{asset('datatables/jquery.dataTables.min.js')}}" defer ></script>
     <script src="{{asset('datatables/dataTables.bootstrap4.min.js')}}" defer></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    {{-- <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script> --}}
 
     <script>
     $(document).ready(function() {
         $('#dataTable').DataTable();
     });
     </script> 
+
+    @yield('jspage')
 </body>
 
 </html>

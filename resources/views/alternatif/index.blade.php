@@ -3,7 +3,9 @@
 @section('title')
 alternatif
 @endsection
-
+@section('header')
+Alternatif
+@endsection
 @section('content')
 <div class="container-fluid">
 

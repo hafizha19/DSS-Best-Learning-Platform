@@ -4,8 +4,8 @@
 Alternatif
 @endsection
 
-@section('title')
-penilaian alternatif
+@section('header')
+Penilaian Alternatif
 @endsection
 
 @section('content')
@@ -18,11 +18,11 @@ penilaian alternatif
     <div class="alert alert-danger">{{ $error[0] }}</div>
     @endif --}}
 
-    <div class="row  justify-content-center">
+    {{-- <div class="row  justify-content-center">
 
         <!-- Page Heading -->
-        <h2 class="h3 mb-4 text-gray-800">Penilaian Alternatif</h2>
-    </div>
+        <h2 class="h3 mb-4 text-primary">Penilaian Alternatif</h2>
+    </div> --}}
 
     <div class="row justify-content-center mb-3">
         <div class="col-lg-12">

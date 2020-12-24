@@ -71,6 +71,7 @@ class PKriteriaController extends Controller
             array_push($m, $temp);
             // $m[$a] = $temp;
         }
+        
         // kali matriks
         $kali = $this->perkalian_matriks($m, $m);
 
@@ -203,8 +204,11 @@ class PKriteriaController extends Controller
     public function destroy(PKriteria $pkriteria)
     {
         $rk = PKriteria::findOrFail($pkriteria->id);
+        $rk2 = PKriteria::where('id_kriteria_1', $rk->id_kriteria_2)
+        ->where('id_kriteria_2', $rk->id_kriteria_1);
         try {
             $rk->delete();
+            $rk2->delete();
         } catch (Exception $e) {
             return back()->withError($e)->withInput();
         }

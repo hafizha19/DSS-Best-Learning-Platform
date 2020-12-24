@@ -4,8 +4,8 @@
 Kriteria
 @endsection
 
-@section('title')
-penilaian kriteria
+@section('header')
+Penilaian Kriteria
 @endsection
 
 @section('content')

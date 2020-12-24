@@ -3,7 +3,9 @@
 @section('title')
 Kriteria
 @endsection
-
+@section('header')
+Kriteria
+@endsection
 @section('content')
 <div class="container-fluid">
 

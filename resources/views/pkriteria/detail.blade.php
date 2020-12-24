@@ -4,6 +4,10 @@
 Tambah Kriteria
 @endsection
 
+@section('header')
+Hasil Penelitian Kriteria
+@endsection
+
 @section('content')
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
