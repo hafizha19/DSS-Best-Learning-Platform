@@ -9,7 +9,7 @@ Detail Penilaian Alternatif
 @section('content')
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <a href="{{ Route('pkriteria.index') }}" class="btn btn-danger">Kembali</a>
+    <a href="{{ Route('palternatif.index') }}" class="btn btn-danger">Kembali</a>
 </div>
 
 <div class="container-fluid">

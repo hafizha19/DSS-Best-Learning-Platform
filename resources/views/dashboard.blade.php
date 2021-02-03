@@ -5,7 +5,7 @@ Dashboard
 @endsection
 
 @section('header')
-Dashboard
+Pemilihan Platfrom Pembelajaran Terbaik Selama Pandemi Covid
 @endsection
 
 @section('content')
@@ -23,20 +23,20 @@ Dashboard
 
                 
             <div class="row justify-content-center">
-                <div class="col-xl-9 col-lg-9">
+                <div class="col-xl-10 col-lg-10">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Grafik Nilai Alternatif</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Perankingan Alternatif</h6>
                         </div>
                         <div class="card-body">
-                            <div class="chart-bar">
+                            {{-- <div class="chart-bar"> --}}
                                 <canvas id="alternatifChart"></canvas>
-                            </div>
+                            {{-- </div> --}}
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center">
+            <div class="row justify-content-center d-none">
                 <div class="col-xl-9 col-lg-9">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">

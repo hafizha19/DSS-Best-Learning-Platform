@@ -24,9 +24,19 @@ Penilaian Alternatif
         <h2 class="h3 mb-4 text-primary">Penilaian Alternatif</h2>
     </div> --}}
 
+    @php
+        $k = \DB::table('kriteria')->count();
+        $a = \DB::table('alternatif')->count();
+        $na = \DB::table('nilai_alternatif')->count();
+        if ($na==$k*$a*$a) {
+            $btn = '';
+        } else {
+            $btn = 'btn-disabled';
+        }
+    @endphp
     <div class="row justify-content-center mb-3">
         <div class="col-lg-12">
-            <a href="{{route('palternatif.detail')}}" class="btn btn-success">Detail Penilaian Alternatif</a>
+            <a href="{{route('palternatif.detail')}}" class="btn btn-success {{$btn}}">Detail Penilaian Alternatif</a>
         </div>
     </div>
     <div class="card shadow mb-4">

@@ -30,6 +30,18 @@ class PKriteriaController extends Controller
         return $hasil;
     }
 
+    function cetakMatriks(array $arr){
+        echo "<table border='1' cellspacing='0' cellpadding='10'>";
+        for ($i=0; $i<sizeof($arr); $i++) {
+            echo "<tr>";
+            for ($j=0; $j<sizeof($arr[$i]); $j++) {
+                echo "<td>". round($arr[$i][$j], 100) ."</td>";
+            }
+            echo "</tr>";
+        }
+        echo "</table>";
+    }
+
     public function nilai(int $a, int $b)
     {
         $nilai = \DB::table('nilai_kriteria')->select('nilai')
@@ -41,6 +53,37 @@ class PKriteriaController extends Controller
 
         $eval = eval('return ' . $nilai . ';');
         return $eval;
+    }
+
+    public function proses1(){
+        // ambil id kriteria terkait
+        $as = \DB::table('nilai_kriteria')
+            ->select('id_kriteria_1')
+            ->orderBy('id_kriteria_1', 'asc')
+            ->groupBy('id_kriteria_1')
+            ->pluck('id_kriteria_1')
+            ->toArray();
+        $bs = \DB::table('nilai_kriteria')
+            ->select('id_kriteria_2')
+            ->orderBy('id_kriteria_2', 'asc')
+            ->groupBy('id_kriteria_2')
+            ->pluck('id_kriteria_2')
+            ->toArray();
+
+        // buat matriks m (3x3)
+        $m = array();
+        $temp = array();
+        foreach ($as as $a) {
+            $temp = [];
+            foreach ($bs as $b) {
+                $nilai = $this->nilai($a, $b);
+                array_push($temp, $nilai);
+            }
+            array_push($m, $temp);
+            // $m[$a] = $temp;
+        }
+
+        return $m;
     }
 
     public function eigenVector()
@@ -112,6 +155,7 @@ class PKriteriaController extends Controller
         $this->eigenVector();
         $data = Kriteria::all();
         $nilai = PKriteria::all();
+        // $m = $this->proses1();
         return view('pkriteria.detail', compact(['data', 'nilai']));
     }
 

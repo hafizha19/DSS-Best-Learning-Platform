@@ -55,6 +55,7 @@ Bobot
                                         <tr>
                                             <th>Bobot</th>
                                             <th>Deskripsi</th>
+                                            <th>Hapus</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -65,6 +66,14 @@ Bobot
                                             </td>
                                             <td>
                                                 {{$d->deskripsi}}
+                                            </td>
+                                            <td>
+                                                <form action="/bobot/{{$d->id}}" method="POST">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger"
+                                                        onclick="return confirm('Apakah anda yakin mengahapus data ini?');">Hapus</button>
+                                                </form>
                                             </td>
                                         </tr>
                                         @endforeach

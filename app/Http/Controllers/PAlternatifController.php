@@ -108,27 +108,29 @@ class PAlternatifController extends Controller
             array_push($mk, $m);
         }
 
+        
         // kali matriks
         $kali = [];
         foreach ($mk as $mkk) {
             $k = $this->perkalian_matriks($mkk, $mkk);
             array_push($kali, $k);
         }
-
-
+        
+        
         // jumlah perbaris simpan di matriks b (3x1)
         $b = array();
         for ($i = 0; $i < count($kali); $i++) {
-            for ($j = 0; $j < count($kali); $j++) {
+            for ($j = 0; $j < count($bs); $j++) {
                 $b[$ks[$i]][$as[$j]] = array_sum($kali[$i][$j]);
             }
         }
+        // $this->cetakMatriks($b[6]);
 
         // dd($b);
         // rangking, sum baris / sum all
         $rs = array();
         for ($i = 0; $i < count($kali); $i++) {
-            for ($j = 0; $j < count($kali); $j++) {
+            for ($j = 0; $j < count($bs); $j++) {
                 $rs[$i][$j] = $b[$ks[$i]][$as[$j]] / array_sum($b[$ks[$i]]);
                 // $rs[$ks[$i]][$as[$j]] = $b[$ks[$i]][$as[$j]] / array_sum($b[$ks[$i]]);
             }

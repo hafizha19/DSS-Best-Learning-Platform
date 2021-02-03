@@ -29,6 +29,19 @@
     
     
     <link href="datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    <style type="text/css">
+        .btn-disabled
+            {
+            cursor: not-allowed;
+            pointer-events: none;
+    
+            /*Button disabled - CSS color class*/
+            color: #c0c0c0;
+            background-color: #ffffff;
+    
+            }
+    </style>
 </head>
 
 <body id="page-top">
@@ -171,7 +184,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Teknik Informatika UIN Malang - Omi Shafa Firgy 2020</span>
                     </div>
                 </div>
             </footer>
